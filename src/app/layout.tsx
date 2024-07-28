@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
-import { Theme } from '@radix-ui/themes';
+import { Box, Theme } from '@radix-ui/themes';
 
 import "@/globals.css";
 import '@radix-ui/themes/styles.css';
@@ -18,7 +18,9 @@ export default function RootLayout({ children }: Readonly<{children: React.React
         <html lang="en">
             <body className={inter.className}>
                 <Theme appearance={ 'dark' }>
-                    { children }
+                    <Box className={ 'h-dvh' }>
+                        { children }
+                    </Box>
                 </Theme>
             </body>
         </html>
