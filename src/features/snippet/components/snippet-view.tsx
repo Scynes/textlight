@@ -1,28 +1,20 @@
-
-'use client';
-
-import { useEffect } from 'react';
-
-import hljs from "highlight.js";
+import { codeToHtml } from 'shiki'
 
 interface Properties {
     // The text snippet to display
-    snippet: string;
+    text: string;
     // The (text) language of the snippet
     language: string;
 }
 
-export const SnippetView = ( { snippet, language }: Properties ) => {
+export const SnippetView = async ( { text, language }: Properties ) => {
 
-    useEffect(() => hljs.highlightAll(), []);
+    const HIGHLIGHT_SNIPPET = await codeToHtml(text, {
+        lang: language,
+        theme: 'dark-plus'
+    });
 
     return (
-        <div>
-            <pre>
-                <code className={ `language-${ language }` }>
-                    { snippet }
-                </code>
-            </pre>
-        </div>
+        <div dangerouslySetInnerHTML={{ __html: HIGHLIGHT_SNIPPET }} />
     )
 }
