@@ -1,6 +1,9 @@
 'use server';
 
 import { createClient } from '@/utils/supabase/server';
+import { redirect } from 'next/navigation';
+import { Snippet } from '../types/snippet';
+
 import ShortUniqueId from 'short-unique-id';
 
 export const submitSnippet = async (formData: FormData) => {
@@ -9,12 +12,9 @@ export const submitSnippet = async (formData: FormData) => {
 
     const SUPABASE = createClient();
 
-    const { data, error } = await SUPABASE.from('snippet').insert({ text: formData.get('text'), link_id: randomUUID(), language: formData.get('language') }).select();
+    const { data, error } = await SUPABASE.from('snippet').insert({ text: formData.get('text'), link_id: randomUUID(), language: formData.get('language') }).select().single<Snippet>();
 
-    if (error) {
-        console.error(error);
-    }
+    if (error) console.log(error);
 
-    console.log(data)
-
+    else redirect(`/s/${ data.link_id }`);
 }

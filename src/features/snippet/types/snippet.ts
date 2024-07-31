@@ -1,6 +1,6 @@
 export interface Snippet {
     
-    linked_id: string;
+    link_id: string;
 
     text: string;
 
