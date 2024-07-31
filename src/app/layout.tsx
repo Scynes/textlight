@@ -4,7 +4,6 @@ import { Box, Theme } from '@radix-ui/themes';
 
 import "@/globals.css";
 import '@radix-ui/themes/styles.css';
-import "highlight.js/styles/github.css";
 
 const inter = Inter({ subsets: ["latin"] });
 

@@ -1,3 +1,8 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* Optional, for the code block we add overflow, borders and padding */
+.shiki {
+    @apply overflow-x-auto rounded-xl p-5;
+}

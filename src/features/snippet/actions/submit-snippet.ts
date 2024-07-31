@@ -9,7 +9,7 @@ export const submitSnippet = async (formData: FormData) => {
 
     const SUPABASE = createClient();
 
-    const { data, error } = await SUPABASE.from('snippet').insert({ text: formData.get('text'), link_id: randomUUID() }).select();
+    const { data, error } = await SUPABASE.from('snippet').insert({ text: formData.get('text'), link_id: randomUUID(), language: formData.get('language') }).select();
 
     if (error) {
         console.error(error);
