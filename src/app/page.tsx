@@ -1,10 +1,10 @@
-import { SnippetInput } from '@/features/snippet/components/snippet-input';
+import { SnippetForm } from '@/features/snippet/components/snippet-form';
 
 export default () => {
 
     return (
         <>
-            <SnippetInput />
+            <SnippetForm />
         </>
     )
 }

@@ -1,4 +1,4 @@
-import { TextField, Text } from '@radix-ui/themes';
+import { TextField } from '@radix-ui/themes';
 import { IoMdRefresh } from "react-icons/io";
 import { IoKey } from "react-icons/io5";
 

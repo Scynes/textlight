@@ -1,11 +1,11 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
-import { Box, Theme } from '@radix-ui/themes';
+import { Oswald } from "next/font/google";
+import { Theme } from '@radix-ui/themes';
 
 import '@radix-ui/themes/styles.css';
 import "@/globals.css";
 
-const inter = Inter({ subsets: ["latin"] });
+const oswald = Oswald({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
     title: "Textlight",
@@ -15,11 +15,9 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: Readonly<{children: React.ReactNode}>) {
     return (
         <html lang="en">
-            <body className={inter.className}>
+            <body className={oswald.className}>
                 <Theme appearance={ 'dark' }>
-                    <Box className={ 'h-dvh' }>
-                        { children }
-                    </Box>
+                    { children }
                 </Theme>
             </body>
         </html>
