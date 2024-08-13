@@ -6,3 +6,7 @@
 .shiki {
     @apply overflow-x-auto rounded-xl p-5;
 }
+
+.radix-themes {
+    --default-font-family: var(--font-nunito) !important;
+}

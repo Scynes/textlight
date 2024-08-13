@@ -1,11 +1,16 @@
 import type { Metadata } from "next";
-import { Oswald } from "next/font/google";
-import { Theme } from '@radix-ui/themes';
+import { Nunito } from "next/font/google";
+import { Box, Theme } from '@radix-ui/themes';
+import { NavigationBar } from '@/components/core/navigation/navigation-bar';
 
 import '@radix-ui/themes/styles.css';
 import "@/globals.css";
 
-const oswald = Oswald({ subsets: ["latin"] });
+const nunito = Nunito({ 
+    subsets: ["latin"],
+    display: 'swap',
+    variable: '--font-nunito',
+});
 
 export const metadata: Metadata = {
     title: "Textlight",
@@ -15,9 +20,12 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: Readonly<{children: React.ReactNode}>) {
     return (
         <html lang="en">
-            <body className={oswald.className}>
-                <Theme appearance={ 'dark' }>
-                    { children }
+            <body className={nunito.variable}>
+                <Theme appearance={ 'dark' } grayColor={ 'slate' }>
+                    <NavigationBar />
+                    <Box className={ 'py-6 px-4' }>
+                        { children }
+                    </Box>
                 </Theme>
             </body>
         </html>
