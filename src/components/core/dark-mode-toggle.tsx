@@ -1,6 +1,6 @@
 'use client';
 
-import { Box, Button } from '@radix-ui/themes';
+import { Button } from '@radix-ui/themes';
 import { useTheme } from 'next-themes';
 import { RxSun, RxMoon } from "react-icons/rx";
 

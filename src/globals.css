@@ -4,9 +4,24 @@
 
 /* Optional, for the code block we add overflow, borders and padding */
 .shiki {
-    @apply overflow-x-auto rounded-xl p-5;
+    @apply overflow-x-auto rounded-md p-5;
 }
 
 .radix-themes {
     --default-font-family: var(--font-nunito) !important;
+}
+
+code {
+    counter-reset: step;
+    counter-increment: step 0;
+}
+  
+code .line::before {
+    content: counter(step);
+    counter-increment: step;
+    width: 1rem;
+    margin-right: 1.5rem;
+    display: inline-block;
+    text-align: right;
+    color: rgba(115,138,148,.4);
 }

@@ -1,11 +1,11 @@
 import type { Metadata } from "next";
 import { Nunito } from "next/font/google";
-import { Box, Theme } from '@radix-ui/themes';
+import { Box, Theme, ThemePanel } from '@radix-ui/themes';
 import { NavigationBar } from '@/components/core/navigation/navigation-bar';
+import { ThemeProvider } from 'next-themes';
 
 import '@radix-ui/themes/styles.css';
 import "@/globals.css";
-import { ThemeProvider } from 'next-themes';
 
 const nunito = Nunito({ 
     subsets: ["latin"],
@@ -20,10 +20,11 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: Readonly<{children: React.ReactNode}>) {
     return (
-        <html lang="en">
+        <html lang="en" suppressHydrationWarning>
             <body className={nunito.variable}>
                 <ThemeProvider attribute="class">
                     <Theme grayColor={ 'slate' }>
+                        <ThemePanel />
                         <NavigationBar />
                         <Box className={ 'py-6 px-4' }>
                             { children }
