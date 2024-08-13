@@ -5,7 +5,7 @@ import * as htmlToImage from 'html-to-image';
 import { Box, Container, Flex, Heading, IconButton, Tooltip } from '@radix-ui/themes';
 import { IoColorPaletteOutline } from "react-icons/io5";
 import { TbBoxMargin } from "react-icons/tb";
-import { RxFontFamily, RxWidth } from "react-icons/rx";
+import { RxFontFamily, RxWidth, RxCopy, RxShare1 } from "react-icons/rx";
 import { useRef, useState } from 'react';
 
 interface Properties {
@@ -57,6 +57,16 @@ export const SnippetView = ( { title, text, language }: Properties ) => {
                         <Tooltip content={ 'Content Width' }>
                             <IconButton onClick={ toggleAutoWidth } variant={ 'soft' } className={ 'cursor-pointer' } color={ 'gray' }>
                                 <RxWidth size={ '1.25rem' }/>
+                            </IconButton>
+                        </Tooltip>
+                        <Tooltip content={ 'Copy Content' }>
+                            <IconButton onClick={ toggleAutoWidth } variant={ 'soft' } className={ 'cursor-pointer' } color={ 'gray' }>
+                                <RxCopy size={ '1.25rem' }/>
+                            </IconButton>
+                        </Tooltip>
+                        <Tooltip content={ 'Share Content' }>
+                            <IconButton onClick={ toggleAutoWidth } variant={ 'soft' } className={ 'cursor-pointer' } color={ 'gray' }>
+                                <RxShare1 size={ '1.25rem' }/>
                             </IconButton>
                         </Tooltip>
                     </Flex>
