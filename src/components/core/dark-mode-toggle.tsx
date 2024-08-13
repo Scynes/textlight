@@ -12,7 +12,7 @@ export const DarkModeToggle = () => {
 
     return (
         <Button onClick={ toggleDarkMode } className={ 'cursor-pointer transition-all' } variant={ 'ghost' } color={ 'gray' }>
-            { theme.theme == 'dark' ? <RxSun size={ '1.5rem' } /> : <RxMoon size={ '1.5rem' } /> }
+            { theme.theme == 'dark' ? <RxSun size={ '1.25rem' } /> : <RxMoon size={ '1.25rem' } /> }
         </Button>
     );
 }

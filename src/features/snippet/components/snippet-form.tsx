@@ -13,13 +13,13 @@ export const SnippetForm = () => {
 
     return (
         <Box className={ 'w-full' }>
-            <Container size={ '2' }>
+            <Container size={ '3' }>
                 <form action={ submitSnippet } className={ 'flex gap-4 flex-col' }>
                     <Flex gap={ '4' } className={ 'flex-col sm:flex-row' }>
                         <TextField.Root name={ 'title' } placeholder={ 'Title' } className={ 'w-full' } size={ '3' } />
                         <SelectLanguage />
                     </Flex>
-                    <TextArea name={ 'text' } size={ { initial: '1', sm: '3' } } rows={ 15 } />
+                    <TextArea name={ 'text' } size={ '3' } rows={ 15 } />
                     <Flex direction={ 'column' } className={ 'rounded-md border border-[--gray-7]' }>
                         <Flex onClick={ () => setSettingsOpen(!settingsOpen) } className={ `transition-all w-full h-10 cursor-pointer px-4 select-none hover:text-[--gray-10]` } align={ 'center' } justify={ 'between' }>
                             <Flex align={ 'center' } gap={ '3' }>

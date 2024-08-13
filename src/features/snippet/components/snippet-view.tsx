@@ -1,4 +1,4 @@
-import { Box } from '@radix-ui/themes';
+import { Box, Container } from '@radix-ui/themes';
 import { codeToHtml } from 'shiki'
 
 interface Properties {
@@ -12,10 +12,12 @@ export const SnippetView = async ( { text, language }: Properties ) => {
 
     const HIGHLIGHT_SNIPPET = await codeToHtml(text, {
         lang: language,
-        theme: 'dark-plus'
+        theme: 'dracula',
     });
 
     return (
-        <Box className={ 'w-auto' } dangerouslySetInnerHTML={{ __html: HIGHLIGHT_SNIPPET }} />
+        <Container size={ '3' }>
+            <Box className={ 'w-auto' } dangerouslySetInnerHTML={{ __html: HIGHLIGHT_SNIPPET }} />
+        </Container>
     )
 }
