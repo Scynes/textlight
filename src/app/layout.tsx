@@ -5,6 +5,7 @@ import { NavigationBar } from '@/components/core/navigation/navigation-bar';
 
 import '@radix-ui/themes/styles.css';
 import "@/globals.css";
+import { ThemeProvider } from 'next-themes';
 
 const nunito = Nunito({ 
     subsets: ["latin"],
@@ -21,12 +22,14 @@ export default function RootLayout({ children }: Readonly<{children: React.React
     return (
         <html lang="en">
             <body className={nunito.variable}>
-                <Theme appearance={ 'dark' } grayColor={ 'slate' }>
-                    <NavigationBar />
-                    <Box className={ 'py-6 px-4' }>
-                        { children }
-                    </Box>
-                </Theme>
+                <ThemeProvider attribute="class">
+                    <Theme grayColor={ 'slate' }>
+                        <NavigationBar />
+                        <Box className={ 'py-6 px-4' }>
+                            { children }
+                        </Box>
+                    </Theme>
+                </ThemeProvider>
             </body>
         </html>
     );

@@ -21,7 +21,7 @@ export const SnippetForm = () => {
                     </Flex>
                     <TextArea name={ 'text' } size={ { initial: '1', sm: '3' } } rows={ 15 } />
                     <Flex direction={ 'column' } className={ 'rounded-md border border-[--gray-7]' }>
-                        <Flex onClick={ () => setSettingsOpen(!settingsOpen) } className={ `transition-all w-full h-10 cursor-pointer px-4 select-none text-white hover:text-[--gray-10]` } align={ 'center' } justify={ 'between' }>
+                        <Flex onClick={ () => setSettingsOpen(!settingsOpen) } className={ `transition-all w-full h-10 cursor-pointer px-4 select-none hover:text-[--gray-10]` } align={ 'center' } justify={ 'between' }>
                             <Flex align={ 'center' } gap={ '3' }>
                                 <IoSettingsSharp />
                                 <Text>Additional Options</Text>
