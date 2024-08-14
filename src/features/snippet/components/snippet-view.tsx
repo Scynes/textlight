@@ -5,8 +5,9 @@ import * as htmlToImage from 'html-to-image';
 import { Box,Text, Container, DropdownMenu, Flex, Heading, IconButton, Slider, Tooltip } from '@radix-ui/themes';
 import { IoColorPaletteOutline } from "react-icons/io5";
 import { TbBoxMargin } from "react-icons/tb";
-import { RxFontFamily, RxWidth, RxCopy, RxShare1 } from "react-icons/rx";
-import { ChangeEvent, FormEvent, useRef, useState } from 'react';
+import { RxFontFamily, RxWidth, RxCopy, RxShare1, RxCamera } from "react-icons/rx";
+import { useRef, useState } from 'react';
+import { BlockPicker, CirclePicker } from 'react-color';
 
 interface Properties {
     // The title of the snippet
@@ -23,9 +24,11 @@ export const SnippetView = ( { title, text, language }: Properties ) => {
 
     const [ autoWidth, setAutoWidth ] = useState<boolean>(false);
 
-    const [ padding, setPadding ] = useState<number>(0);
+    const [ padding, setPadding ] = useState<number>(4);
 
-    const handleClick = async () => {
+    const [ backgroundColor, setBackgroundColor ] = useState<string>('#f9f9f9');
+
+    const exportImage = async () => {
 
         if (!codeRef.current) return;
 
@@ -35,31 +38,46 @@ export const SnippetView = ( { title, text, language }: Properties ) => {
     // Toggle the auto width state that controls the width of the snippet container.
     const toggleAutoWidth = () => setAutoWidth(!autoWidth);
 
+    // Handle the padding change for the snippet container.
     const handlePaddingChange = ( value: number[] ) => setPadding(value[0]);
+
+    // Handle the background color change for the snippet container.
+    const handleBackgroundColorChange = ( color: any ) => setBackgroundColor(color.hex);
 
     return (
         <Container size={ '3' }>
+            <Text>{ backgroundColor }</Text>
             <Flex flexGrow={ '1' } direction={ 'column' }>
-                <Flex className={ 'mb-2' } justify={ 'between' } align={ 'end' }>
-                    <Heading size={ '6' }>{ title }</Heading>
+                <Flex className={ 'mb-2 flex-col sm:flex-row' } justify={ 'between' }>
+                    <Heading size={ '6' } className={ 'sm:self-end sm:mb-2' }>{ title }</Heading>
                     <Flex gap={ '1' } className={ 'rounded-md bg-[--gray-2] p-2' }>
-                        <Tooltip content={ 'Background Color' }>
-                            <IconButton variant={ 'soft' } className={ 'cursor-pointer' } color={ 'gray' }>
-                                <IoColorPaletteOutline size={ '1.25rem' }/>
-                            </IconButton>
-                        </Tooltip>
+                            <DropdownMenu.Root>
+                                <Tooltip content={ 'Background Color' }>
+                                    <DropdownMenu.Trigger>
+                                        <IconButton variant={ 'soft' } className={ 'cursor-pointer' } color={ 'gray' }>
+                                            <IoColorPaletteOutline size={ '1.25rem' }/>
+                                        </IconButton>
+                                    </DropdownMenu.Trigger>
+                                </Tooltip>
+                                <DropdownMenu.Content>
+                                    <Flex className='p-2'>
+                                        <CirclePicker color={ backgroundColor } onChange={ handleBackgroundColorChange } />
+                                    </Flex>
+                                </DropdownMenu.Content>
+                            </DropdownMenu.Root>
                         <Tooltip content={ 'Font Family' }>
                             <IconButton variant={ 'soft' } className={ 'cursor-pointer' } color={ 'gray' }>
                                 <RxFontFamily size={ '1.25rem' }/>
                             </IconButton>
                         </Tooltip>
-                        <Tooltip content={ 'Content Padding' }>
                             <DropdownMenu.Root>
-                                <DropdownMenu.Trigger>
-                                    <IconButton variant={ 'soft' } className={ 'cursor-pointer' } color={ 'gray' }>
-                                        <TbBoxMargin size={ '1.25rem' }/>
-                                    </IconButton>
-                                </DropdownMenu.Trigger>
+                                <Tooltip content={ 'Content Padding' }>
+                                    <DropdownMenu.Trigger>
+                                        <IconButton variant={ 'soft' } className={ 'cursor-pointer' } color={ 'gray' }>
+                                            <TbBoxMargin size={ '1.25rem' }/>
+                                        </IconButton>
+                                    </DropdownMenu.Trigger>
+                                </Tooltip>
                                 <DropdownMenu.Content side='bottom'>
                                     <Flex direction={ 'column' } className={ 'w-40 p-2 gap-1' }>
                                         <Text>Padding: { padding * 4 }px</Text>
@@ -67,27 +85,31 @@ export const SnippetView = ( { title, text, language }: Properties ) => {
                                     </Flex>
                                 </DropdownMenu.Content>
                             </DropdownMenu.Root>
-                        </Tooltip>
                         <Tooltip content={ 'Autofit Content' }>
                             <IconButton onClick={ toggleAutoWidth } variant={ 'soft' } className={ 'cursor-pointer' } color={ 'gray' }>
                                 <RxWidth size={ '1.25rem' }/>
                             </IconButton>
                         </Tooltip>
                         <Tooltip content={ 'Copy Content' }>
-                            <IconButton onClick={ toggleAutoWidth } variant={ 'soft' } className={ 'cursor-pointer' } color={ 'gray' }>
+                            <IconButton variant={ 'soft' } className={ 'cursor-pointer' } color={ 'gray' }>
                                 <RxCopy size={ '1.25rem' }/>
                             </IconButton>
                         </Tooltip>
                         <Tooltip content={ 'Share Content' }>
-                            <IconButton onClick={ toggleAutoWidth } variant={ 'soft' } className={ 'cursor-pointer' } color={ 'gray' }>
+                            <IconButton variant={ 'soft' } className={ 'cursor-pointer' } color={ 'gray' }>
                                 <RxShare1 size={ '1.25rem' }/>
+                            </IconButton>
+                        </Tooltip>
+                        <Tooltip content={ 'Export Image' }>
+                            <IconButton onClick={ exportImage } variant={ 'soft' } className={ 'cursor-pointer' } color={ 'amber' }>
+                                <RxCamera size={ '1.25rem' }/>
                             </IconButton>
                         </Tooltip>
                     </Flex>
                 </Flex>
                 <Box p={ '4' } className={ 'bg-[--gray-2] rounded-md' }>
                     <Flex justify={ 'center' }>
-                        <Box p={ padding.toString() } ref={ codeRef } className={ `transition-all ${ !autoWidth && 'w-full' } bg-red-300 max-w-full` } dangerouslySetInnerHTML={{ __html: text }} />
+                        <Box style={ { backgroundColor: backgroundColor } } p={ padding.toString() } ref={ codeRef } className={ `transition-all ${ !autoWidth && 'w-full' } max-w-full` } dangerouslySetInnerHTML={{ __html: text }} />
                     </Flex>
                 </Box>
             </Flex>
