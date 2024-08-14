@@ -2,12 +2,12 @@
 
 import * as htmlToImage from 'html-to-image';
 
-import { Box,Text, Container, DropdownMenu, Flex, Heading, IconButton, Slider, Tooltip } from '@radix-ui/themes';
+import { Box,Text, Container, DropdownMenu, Flex, Heading, IconButton, Slider, Tooltip, Popover, SegmentedControl } from '@radix-ui/themes';
 import { IoColorPaletteOutline } from "react-icons/io5";
 import { TbBoxMargin } from "react-icons/tb";
 import { RxFontFamily, RxWidth, RxCopy, RxShare1, RxCamera } from "react-icons/rx";
 import { useRef, useState } from 'react';
-import { BlockPicker, CirclePicker } from 'react-color';
+import { CirclePicker } from 'react-color';
 
 interface Properties {
     // The title of the snippet
@@ -27,6 +27,8 @@ export const SnippetView = ( { title, text, language }: Properties ) => {
     const [ padding, setPadding ] = useState<number>(4);
 
     const [ backgroundColor, setBackgroundColor ] = useState<string>('#f9f9f9');
+
+    const [ paletteTab, setPaletteTab ] = useState<'solid' | 'gradient' | 'image'>('solid');
 
     const exportImage = async () => {
 
@@ -52,25 +54,29 @@ export const SnippetView = ( { title, text, language }: Properties ) => {
 
     return (
         <Container size={ '3' }>
-            <Text>{ backgroundColor }</Text>
             <Flex flexGrow={ '1' } direction={ 'column' }>
                 <Flex className={ 'mb-2 flex-col sm:flex-row' } justify={ 'between' }>
                     <Heading size={ '6' } className={ 'sm:self-end sm:mb-2' }>{ title }</Heading>
                     <Flex gap={ '1' } className={ 'rounded-md bg-[--gray-2] p-2' }>
-                            <DropdownMenu.Root>
-                                <Tooltip content={ 'Background Color' }>
-                                    <DropdownMenu.Trigger>
-                                        <IconButton variant={ 'soft' } className={ 'cursor-pointer' } color={ 'gray' }>
-                                            <IoColorPaletteOutline size={ '1.25rem' }/>
-                                        </IconButton>
-                                    </DropdownMenu.Trigger>
-                                </Tooltip>
-                                <DropdownMenu.Content>
-                                    <Flex className='p-2'>
-                                        <CirclePicker color={ backgroundColor } onChange={ handleBackgroundColorChange } />
-                                    </Flex>
-                                </DropdownMenu.Content>
-                            </DropdownMenu.Root>
+                        <Popover.Root>
+                            <Tooltip content={ 'Background Color' }>
+                                <Popover.Trigger>
+                                    <IconButton variant={ 'soft' } className={ 'cursor-pointer' } color={ 'gray' }>
+                                        <IoColorPaletteOutline size={ '1.25rem' }/>
+                                    </IconButton>
+                                </Popover.Trigger>
+                            </Tooltip>
+                            <Popover.Content>
+                                <SegmentedControl.Root value={ paletteTab } defaultValue={ paletteTab } className={ 'mb-4' }>
+                                    <SegmentedControl.Item onClick={ () => setPaletteTab('solid') } value={ 'solid' }>Solid</SegmentedControl.Item>
+                                    <SegmentedControl.Item onClick={ () => setPaletteTab('gradient') } value={ 'gradient' }>Gradient</SegmentedControl.Item>
+                                    <SegmentedControl.Item onClick={ () => setPaletteTab('image') } value={ 'image' } aria-disabled>Image</SegmentedControl.Item>
+                                </SegmentedControl.Root>
+                                <Flex justify={ 'center' }>
+                                    { paletteTab === 'solid' && <CirclePicker color={ backgroundColor } onChange={ handleBackgroundColorChange } /> }
+                                </Flex>
+                            </Popover.Content>
+                        </Popover.Root>
                         <Tooltip content={ 'Font Family' }>
                             <IconButton variant={ 'soft' } className={ 'cursor-pointer' } color={ 'gray' }>
                                 <RxFontFamily size={ '1.25rem' }/>
@@ -115,7 +121,7 @@ export const SnippetView = ( { title, text, language }: Properties ) => {
                 </Flex>
                 <Box p={ '4' } className={ 'bg-[--gray-2] rounded-md' }>
                     <Flex justify={ 'center' }>
-                        <Box style={ { backgroundColor: backgroundColor } } p={ padding.toString() } ref={ codeRef } className={ `transition-all ${ !autoWidth && 'w-full' } max-w-full` } dangerouslySetInnerHTML={{ __html: text }} />
+                        <Box style={ { backgroundColor: padding > 0 ? backgroundColor : undefined  } } p={ padding.toString() } ref={ codeRef } className={ `transition-all ${ !autoWidth && 'w-full' } max-w-full` } dangerouslySetInnerHTML={{ __html: text }} />
                     </Flex>
                 </Box>
             </Flex>
