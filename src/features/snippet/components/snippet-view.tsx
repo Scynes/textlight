@@ -2,13 +2,13 @@
 
 import * as htmlToImage from 'html-to-image';
 
-import { Box,Text, Container, DropdownMenu, Flex, Heading, IconButton, Slider, Tooltip, Popover, SegmentedControl } from '@radix-ui/themes';
+import { Box,Text, Container, Flex, Heading, IconButton, Slider, Tooltip, Popover, SegmentedControl } from '@radix-ui/themes';
 import { IoColorPaletteOutline } from "react-icons/io5";
 import { TbBoxMargin } from "react-icons/tb";
 import { RxFontFamily, RxWidth, RxCopy, RxShare1, RxCamera } from "react-icons/rx";
-import { useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { CirclePicker } from 'react-color';
-import GradientPicker from 'react-best-gradient-color-picker';
+import GradientPicker, { useColorPicker } from 'react-best-gradient-color-picker';
 
 interface Properties {
     // The title of the snippet
@@ -27,9 +27,17 @@ export const SnippetView = ( { title, text, language }: Properties ) => {
 
     const [ padding, setPadding ] = useState<number>(4);
 
-    const [ backgroundColor, setBackgroundColor ] = useState<string>('#f9f9f9');
+    const [ solidColor, setSolidColor ] = useState<string>('#f9f9f9');
+
+    const [gradientColor, setGradientColor] = useState('linear-gradient(200deg, rgba(0,0,128,1) 0%, RGBA(128,0,0, 1) 100%)');
 
     const [ paletteTab, setPaletteTab ] = useState<'solid' | 'gradient' | 'image'>('solid');
+
+    const { isGradient, setDegrees } = useColorPicker(gradientColor, setGradientColor);
+
+    useEffect(() => {
+        setDegrees(200);
+    }, []);
 
     const exportImage = async () => {
 
@@ -51,7 +59,7 @@ export const SnippetView = ( { title, text, language }: Properties ) => {
     const handlePaddingChange = ( value: number[] ) => setPadding(value[0]);
 
     // Handle the background color change for the snippet container.
-    const handleBackgroundColorChange = ( color: any ) => setBackgroundColor(color.hex);
+    const handleSolidColorChange = ( color: any ) => setSolidColor(color.hex);
 
     return (
         <Container size={ '3' }>
@@ -74,8 +82,8 @@ export const SnippetView = ( { title, text, language }: Properties ) => {
                                     <SegmentedControl.Item onClick={ () => setPaletteTab('image') } value={ 'image' } aria-disabled>Image</SegmentedControl.Item>
                                 </SegmentedControl.Root>
                                 <Flex justify={ 'center' }>
-                                    { paletteTab === 'solid' && <CirclePicker color={ backgroundColor } onChange={ handleBackgroundColorChange } /> }
-                                    { paletteTab === 'gradient' && <GradientPicker hideControls hideOpacity hideGradientControls onChange={ () => console.log('boom') }/> }
+                                    { paletteTab === 'solid' && <CirclePicker color={ solidColor } onChange={ handleSolidColorChange } /> }
+                                    { paletteTab === 'gradient' && <GradientPicker value={ gradientColor } onChange={ setGradientColor } hideColorTypeBtns hideControls hideOpacity /> }
                                 </Flex>
                             </Popover.Content>
                         </Popover.Root>
@@ -123,7 +131,7 @@ export const SnippetView = ( { title, text, language }: Properties ) => {
                 </Flex>
                 <Box p={ '4' } className={ 'bg-[--gray-2] rounded-md' }>
                     <Flex justify={ 'center' }>
-                        <Box style={ { backgroundColor: padding > 0 ? backgroundColor : undefined  } } p={ padding.toString() } ref={ codeRef } className={ `transition-all ${ !autoWidth && 'w-full' } max-w-full` } dangerouslySetInnerHTML={{ __html: text }} />
+                        <Box style={ { background: padding > 0 ? paletteTab == 'solid' ? solidColor : gradientColor : undefined } } p={ padding.toString() } ref={ codeRef } className={ `transition-all ${ !autoWidth && 'w-full' } max-w-full` } dangerouslySetInnerHTML={{ __html: text }} />
                     </Flex>
                 </Box>
             </Flex>
