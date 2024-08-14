@@ -11,7 +11,7 @@ export const SnippetForm = () => {
             <Container size={ '3' }>
                 <form action={ submitSnippet } className={ 'flex gap-4 flex-col' }>
                     <Flex gap={ '4' } className={ 'flex-col sm:flex-row' }>
-                        <TextField.Root name={ 'title' } placeholder={ 'Title' } className={ 'w-full' } size={ '3' } />
+                        <TextField.Root name={ 'title' } placeholder={ 'Title' } className={ 'w-full' } size={ '3' } autoComplete='off'/>
                         <SelectLanguage />
                     </Flex>
                     <TextArea name={ 'text' } size={ '3' } rows={ 15 } />

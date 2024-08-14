@@ -24,7 +24,6 @@ export default function RootLayout({ children }: Readonly<{children: React.React
             <body className={nunito.variable}>
                 <ThemeProvider attribute="class">
                     <Theme grayColor={ 'slate' }>
-                        <ThemePanel />
                         <NavigationBar />
                         <Box className={ 'py-6 px-4' }>
                             { children }

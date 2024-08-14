@@ -33,6 +33,12 @@ export const SnippetView = ( { title, text, language }: Properties ) => {
         if (!codeRef.current) return;
 
         const result = await htmlToImage.toPng(codeRef.current, { cacheBust: false });
+
+        const link = document.createElement("a");
+
+        link.download = `${ title }.png`;
+        link.href = result;
+        link.click();
     }
 
     // Toggle the auto width state that controls the width of the snippet container.
