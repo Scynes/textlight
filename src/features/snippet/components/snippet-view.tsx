@@ -8,6 +8,7 @@ import { TbBoxMargin } from "react-icons/tb";
 import { RxFontFamily, RxWidth, RxCopy, RxShare1, RxCamera } from "react-icons/rx";
 import { useRef, useState } from 'react';
 import { CirclePicker } from 'react-color';
+import GradientPicker from 'react-best-gradient-color-picker';
 
 interface Properties {
     // The title of the snippet
@@ -67,13 +68,14 @@ export const SnippetView = ( { title, text, language }: Properties ) => {
                                 </Popover.Trigger>
                             </Tooltip>
                             <Popover.Content>
-                                <SegmentedControl.Root value={ paletteTab } defaultValue={ paletteTab } className={ 'mb-4' }>
+                                <SegmentedControl.Root value={ paletteTab } defaultValue={ paletteTab } className={ 'mb-4 w-full' }>
                                     <SegmentedControl.Item onClick={ () => setPaletteTab('solid') } value={ 'solid' }>Solid</SegmentedControl.Item>
                                     <SegmentedControl.Item onClick={ () => setPaletteTab('gradient') } value={ 'gradient' }>Gradient</SegmentedControl.Item>
                                     <SegmentedControl.Item onClick={ () => setPaletteTab('image') } value={ 'image' } aria-disabled>Image</SegmentedControl.Item>
                                 </SegmentedControl.Root>
                                 <Flex justify={ 'center' }>
                                     { paletteTab === 'solid' && <CirclePicker color={ backgroundColor } onChange={ handleBackgroundColorChange } /> }
+                                    { paletteTab === 'gradient' && <GradientPicker hideControls hideOpacity hideGradientControls onChange={ () => console.log('boom') }/> }
                                 </Flex>
                             </Popover.Content>
                         </Popover.Root>
@@ -82,21 +84,21 @@ export const SnippetView = ( { title, text, language }: Properties ) => {
                                 <RxFontFamily size={ '1.25rem' }/>
                             </IconButton>
                         </Tooltip>
-                            <DropdownMenu.Root>
+                            <Popover.Root>
                                 <Tooltip content={ 'Content Padding' }>
-                                    <DropdownMenu.Trigger>
+                                    <Popover.Trigger>
                                         <IconButton variant={ 'soft' } className={ 'cursor-pointer' } color={ 'gray' }>
                                             <TbBoxMargin size={ '1.25rem' }/>
                                         </IconButton>
-                                    </DropdownMenu.Trigger>
+                                    </Popover.Trigger>
                                 </Tooltip>
-                                <DropdownMenu.Content side='bottom'>
+                                <Popover.Content side='bottom'>
                                     <Flex direction={ 'column' } className={ 'w-40 p-2 gap-1' }>
                                         <Text>Padding: { padding * 4 }px</Text>
                                         <Slider size={ '1' } defaultValue={ [ padding ] } value={ [ padding ] } className={ 'w-full cursor-pointer' } max={ 9 } onValueChange={ handlePaddingChange } />
                                     </Flex>
-                                </DropdownMenu.Content>
-                            </DropdownMenu.Root>
+                                </Popover.Content>
+                            </Popover.Root>
                         <Tooltip content={ 'Autofit Content' }>
                             <IconButton onClick={ toggleAutoWidth } variant={ 'soft' } className={ 'cursor-pointer' } color={ 'gray' }>
                                 <RxWidth size={ '1.25rem' }/>
