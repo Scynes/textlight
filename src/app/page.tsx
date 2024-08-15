@@ -1,6 +1,6 @@
 import { SnippetForm } from '@/features/snippet/components/snippet-form';
 
-export default () => {
+export default function Page () {
 
     return (
         <>

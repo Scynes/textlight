@@ -2,7 +2,7 @@ import { getSnippet } from '@/features/snippet/actions/get-snippet'
 import { SnippetView } from '@/features/snippet/components/snippet-view';
 import { codeToHtml } from 'shiki';
 
-export default async ( { params }: { params: { slug: string } } ) => {
+export default async function Page ( { params }: { params: { slug: string } } ) {
 
     const data = await getSnippet(params.slug)
 
