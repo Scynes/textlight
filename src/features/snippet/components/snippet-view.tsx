@@ -29,7 +29,7 @@ export const SnippetView = ( { title, text, language }: Properties ) => {
 
     const [ solidColor, setSolidColor ] = useState<string>('#f9f9f9');
 
-    const [gradientColor, setGradientColor] = useState('linear-gradient(200deg, rgba(0,0,128,1) 0%, RGBA(128,0,0, 1) 100%)');
+    const [gradientColor, setGradientColor] = useState('linear-gradient(200deg, rgb(15, 15, 245) 0%, rgb(195, 95, 48) 100%)');
 
     const [ paletteTab, setPaletteTab ] = useState<'solid' | 'gradient' | 'image'>('solid');
 
