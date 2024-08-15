@@ -5,21 +5,24 @@ import * as htmlToImage from 'html-to-image';
 import { Box,Text, Container, Flex, Heading, IconButton, Slider, Tooltip, Popover, SegmentedControl } from '@radix-ui/themes';
 import { IoColorPaletteOutline } from "react-icons/io5";
 import { TbBoxMargin } from "react-icons/tb";
-import { RxFontFamily, RxWidth, RxCopy, RxShare1, RxCamera } from "react-icons/rx";
+import { RxFontFamily, RxWidth, RxShare1, RxCamera } from "react-icons/rx";
 import { useEffect, useRef, useState } from 'react';
 import { CirclePicker } from 'react-color';
 import GradientPicker, { useColorPicker } from 'react-best-gradient-color-picker';
+import { CopyButton } from '@/features/snippet/components/toolbar/copy-button';
 
 interface Properties {
     // The title of the snippet
     title: string;
-    // The text snippet to display
+    // The raw text.
     text: string;
+    // The formatted text in HTML.
+    formattedText: string;
     // The (text) language of the snippet
     language: string;
 }
 
-export const SnippetView = ( { title, text, language }: Properties ) => {
+export const SnippetView = ( { title, text, formattedText, language }: Properties ) => {
 
     const codeRef = useRef(null);
 
@@ -101,7 +104,7 @@ export const SnippetView = ( { title, text, language }: Properties ) => {
                                     </Popover.Trigger>
                                 </Tooltip>
                                 <Popover.Content side='bottom'>
-                                    <Flex direction={ 'column' } className={ 'w-40 p-2 gap-1' }>
+                                    <Flex direction={ 'column' } className={ 'w-40 gap-1' }>
                                         <Text>Padding: { padding * 4 }px</Text>
                                         <Slider size={ '1' } defaultValue={ [ padding ] } value={ [ padding ] } className={ 'w-full cursor-pointer' } max={ 9 } onValueChange={ handlePaddingChange } />
                                     </Flex>
@@ -112,11 +115,7 @@ export const SnippetView = ( { title, text, language }: Properties ) => {
                                 <RxWidth size={ '1.25rem' }/>
                             </IconButton>
                         </Tooltip>
-                        <Tooltip content={ 'Copy Content' }>
-                            <IconButton variant={ 'soft' } className={ 'cursor-pointer' } color={ 'gray' }>
-                                <RxCopy size={ '1.25rem' }/>
-                            </IconButton>
-                        </Tooltip>
+                        <CopyButton text={ text } />
                         <Tooltip content={ 'Share Content' }>
                             <IconButton variant={ 'soft' } className={ 'cursor-pointer' } color={ 'gray' }>
                                 <RxShare1 size={ '1.25rem' }/>
@@ -131,7 +130,7 @@ export const SnippetView = ( { title, text, language }: Properties ) => {
                 </Flex>
                 <Box p={ '4' } className={ 'bg-[--gray-2] rounded-md' }>
                     <Flex justify={ 'center' }>
-                        <Box style={ { background: padding > 0 ? paletteTab == 'solid' ? solidColor : gradientColor : undefined } } p={ padding.toString() } ref={ codeRef } className={ `transition-all ${ !autoWidth && 'w-full' } max-w-full` } dangerouslySetInnerHTML={{ __html: text }} />
+                        <Box style={ { background: padding > 0 ? paletteTab == 'solid' ? solidColor : gradientColor : undefined } } p={ padding.toString() } ref={ codeRef } className={ `transition-all ${ !autoWidth && 'w-full' } max-w-full` } dangerouslySetInnerHTML={{ __html: formattedText }} />
                     </Flex>
                 </Box>
             </Flex>

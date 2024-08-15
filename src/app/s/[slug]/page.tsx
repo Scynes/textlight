@@ -13,7 +13,7 @@ export default async ( { params }: { params: { slug: string } } ) => {
 
     return (
         <>
-            { data && <SnippetView title={ data.title } text={ highlightSnippet } language={ data.language } /> }
+            { data && <SnippetView title={ data.title } text={ data.text } formattedText={ highlightSnippet } language={ data.language } /> }
         </>
     )
     
