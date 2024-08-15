@@ -1,23 +1,20 @@
 'use client'
 
 import { IconButton, Tooltip } from '@radix-ui/themes';
-import { useTheme } from 'next-themes';
 import { RxCopy } from 'react-icons/rx';
 import { toast } from 'react-toastify';
 
-export const CopyButton = ( { text }: { text: string } ) => {
-
-    const { theme } = useTheme();
+export const CopyContentButton = ( { text }: { text: string } ) => {
 
     const copyContent = () => {
         navigator.clipboard.writeText(text);
-        toast('Copied to clipboard', { position: 'bottom-right', theme: 'dark' });
+        toast.success('Content copied to clipboard!', { position: 'bottom-right', theme: 'dark' });
     }
 
     return (
         <>
             <Tooltip content={ 'Copy Content' }>
-                <IconButton onClick={ copyContent } variant={ 'soft' } className={ 'cursor-pointer' } color={ 'gray' }>
+                <IconButton onClick={ copyContent } variant={ 'soft' } className={ 'transition-all active:scale-95 cursor-pointer' } color={ 'gray' }>
                     <RxCopy size={ '1.25rem' }/>
                 </IconButton>
             </Tooltip>

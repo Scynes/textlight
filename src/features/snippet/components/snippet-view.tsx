@@ -4,13 +4,14 @@ import * as htmlToImage from 'html-to-image';
 
 import { Box,Text, Container, Flex, Heading, IconButton, Slider, Tooltip, Popover, SegmentedControl } from '@radix-ui/themes';
 import { IoColorPaletteOutline } from "react-icons/io5";
-import { FaLink } from "react-icons/fa6";
+
 import { TbBoxMargin } from "react-icons/tb";
-import { RxFontFamily, RxWidth, RxShare1, RxCamera } from "react-icons/rx";
+import { RxFontFamily, RxWidth, RxCamera } from "react-icons/rx";
 import { useEffect, useRef, useState } from 'react';
 import { CirclePicker } from 'react-color';
 import GradientPicker, { useColorPicker } from 'react-best-gradient-color-picker';
-import { CopyButton } from '@/features/snippet/components/toolbar/copy-button';
+import { CopyContentButton } from '@/features/snippet/components/toolbar/copy-content-button';
+import { CopyLinkButton } from './toolbar/copy-link-button';
 
 interface Properties {
     // The title of the snippet
@@ -29,7 +30,7 @@ export const SnippetView = ( { title, text, formattedText, language }: Propertie
 
     const [ autoWidth, setAutoWidth ] = useState<boolean>(false);
 
-    const [ padding, setPadding ] = useState<number>(4);
+    const [ padding, setPadding ] = useState<number>(0);
 
     const [ solidColor, setSolidColor ] = useState<string>('#f9f9f9');
 
@@ -74,7 +75,7 @@ export const SnippetView = ( { title, text, formattedText, language }: Propertie
                         <Popover.Root>
                             <Tooltip content={ 'Background Color' }>
                                 <Popover.Trigger>
-                                    <IconButton variant={ 'soft' } className={ 'cursor-pointer' } color={ 'gray' }>
+                                    <IconButton variant={ 'soft' } className={ 'transition-all active:scale-95 cursor-pointer' } color={ 'gray' }>
                                         <IoColorPaletteOutline size={ '1.25rem' }/>
                                     </IconButton>
                                 </Popover.Trigger>
@@ -92,14 +93,14 @@ export const SnippetView = ( { title, text, formattedText, language }: Propertie
                             </Popover.Content>
                         </Popover.Root>
                         <Tooltip content={ 'Font Family' }>
-                            <IconButton variant={ 'soft' } className={ 'cursor-pointer' } color={ 'gray' }>
+                            <IconButton variant={ 'soft' } className={ 'transition-all active:scale-95 cursor-pointer' } color={ 'gray' }>
                                 <RxFontFamily size={ '1.25rem' }/>
                             </IconButton>
                         </Tooltip>
                             <Popover.Root>
                                 <Tooltip content={ 'Content Padding' }>
                                     <Popover.Trigger>
-                                        <IconButton variant={ 'soft' } className={ 'cursor-pointer' } color={ 'gray' }>
+                                        <IconButton variant={ 'soft' } className={ 'transition-all active:scale-95 cursor-pointer' } color={ 'gray' }>
                                             <TbBoxMargin size={ '1.25rem' }/>
                                         </IconButton>
                                     </Popover.Trigger>
@@ -107,23 +108,19 @@ export const SnippetView = ( { title, text, formattedText, language }: Propertie
                                 <Popover.Content side='bottom'>
                                     <Flex direction={ 'column' } className={ 'w-40 gap-1' }>
                                         <Text>Padding: { padding * 4 }px</Text>
-                                        <Slider size={ '1' } defaultValue={ [ padding ] } value={ [ padding ] } className={ 'w-full cursor-pointer' } max={ 9 } onValueChange={ handlePaddingChange } />
+                                        <Slider size={ '1' } defaultValue={ [ padding ] } value={ [ padding ] } className={ 'transition-all active:scale-95 w-full cursor-pointer' } max={ 9 } onValueChange={ handlePaddingChange } />
                                     </Flex>
                                 </Popover.Content>
                             </Popover.Root>
                         <Tooltip content={ 'Autofit Content' }>
-                            <IconButton onClick={ toggleAutoWidth } variant={ 'soft' } className={ 'cursor-pointer' } color={ 'gray' }>
+                            <IconButton onClick={ toggleAutoWidth } variant={ 'soft' } className={ 'transition-all active:scale-95 cursor-pointer' } color={ 'gray' }>
                                 <RxWidth size={ '1.25rem' }/>
                             </IconButton>
                         </Tooltip>
-                        <CopyButton text={ text } />
-                        <Tooltip content={ 'Share Link' }>
-                            <IconButton variant={ 'soft' } className={ 'cursor-pointer' } color={ 'gray' }>
-                                <FaLink size={ '1.25rem' }/>
-                            </IconButton>
-                        </Tooltip>
+                        <CopyContentButton text={ text } />
+                        <CopyLinkButton />
                         <Tooltip content={ 'Export Image' }>
-                            <IconButton onClick={ exportImage } variant={ 'soft' } className={ 'cursor-pointer' } color={ 'amber' }>
+                            <IconButton onClick={ exportImage } variant={ 'soft' } className={ 'transition-all active:scale-95 cursor-pointer' } color={ 'amber' }>
                                 <RxCamera size={ '1.25rem' }/>
                             </IconButton>
                         </Tooltip>
