@@ -2,9 +2,34 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Optional, for the code block we add overflow, borders and padding */
 .shiki {
-    @apply overflow-x-auto rounded-md p-5;
+    @apply overflow-x-auto rounded-md p-5 relative;
+}
+
+.shiki::before,
+.shiki::after,
+.shiki code::before {
+    content: '';
+    position: absolute;
+    top: 0.75rem;
+    width: 0.75rem;
+    height: 0.75rem;
+    border-radius: 50%;
+}
+
+.shiki::before {
+    left: 0.75rem;
+    background-color: #FF5F56;
+}
+
+.shiki::after {
+    left: 2rem;
+    background-color: #FFBD2E;
+}
+
+.shiki code::before {
+    left: 3.25rem;
+    background-color: #27C93F;
 }
 
 .radix-themes {
@@ -19,8 +44,7 @@ code {
 code .line::before {
     content: counter(step);
     counter-increment: step;
-    width: 1rem;
-    margin-right: 1.5rem;
+    margin-right: 1rem;
     display: inline-block;
     text-align: right;
     color: rgba(115,138,148,.4);
@@ -31,5 +55,7 @@ div:has(> #rbgcp-wrapper) {
 }
 
 pre.shiki {
+    padding-top: 2.5rem;
+    padding-left: .75rem;
     box-shadow: 0 .5rem 1rem .25rem rgba(0, 0, 0, 0.4);
 }
