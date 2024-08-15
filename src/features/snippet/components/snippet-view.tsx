@@ -4,6 +4,7 @@ import * as htmlToImage from 'html-to-image';
 
 import { Box,Text, Container, Flex, Heading, IconButton, Slider, Tooltip, Popover, SegmentedControl } from '@radix-ui/themes';
 import { IoColorPaletteOutline } from "react-icons/io5";
+import { FaLink } from "react-icons/fa6";
 import { TbBoxMargin } from "react-icons/tb";
 import { RxFontFamily, RxWidth, RxShare1, RxCamera } from "react-icons/rx";
 import { useEffect, useRef, useState } from 'react';
@@ -116,9 +117,9 @@ export const SnippetView = ( { title, text, formattedText, language }: Propertie
                             </IconButton>
                         </Tooltip>
                         <CopyButton text={ text } />
-                        <Tooltip content={ 'Share Content' }>
+                        <Tooltip content={ 'Share Link' }>
                             <IconButton variant={ 'soft' } className={ 'cursor-pointer' } color={ 'gray' }>
-                                <RxShare1 size={ '1.25rem' }/>
+                                <FaLink size={ '1.25rem' }/>
                             </IconButton>
                         </Tooltip>
                         <Tooltip content={ 'Export Image' }>

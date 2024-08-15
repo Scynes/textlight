@@ -2,6 +2,15 @@
 @tailwind components;
 @tailwind utilities;
 
+:root {
+    --toastify-color-dark: #111111;
+    --toastify-color-progress-dark: #27C93F;
+}
+
+.Toastify__toast {
+    box-shadow: 0 .25rem .75rem .15rem rgba(0, 0, 0, 0.4);
+}
+
 .shiki {
     @apply overflow-x-auto rounded-md p-5 relative;
 }

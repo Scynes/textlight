@@ -6,6 +6,8 @@ import { ThemeProvider } from 'next-themes';
 
 import '@radix-ui/themes/styles.css';
 import "@/globals.css";
+import 'react-toastify/dist/ReactToastify.css';
+import { ToastContainer } from 'react-toastify';
 
 const nunito = Nunito({ 
     subsets: ["latin"],
@@ -23,6 +25,7 @@ export default function RootLayout({ children }: Readonly<{children: React.React
         <html lang="en" suppressHydrationWarning>
             <body className={nunito.variable}>
                 <ThemeProvider attribute="class">
+                    <ToastContainer />
                     <Theme grayColor={ 'slate' }>
                         <NavigationBar />
                         <Box className={ 'py-6 px-4' }>
