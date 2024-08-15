@@ -129,9 +129,11 @@ export const SnippetView = ( { title, text, formattedText, language }: Propertie
                         </Tooltip>
                     </Flex>
                 </Flex>
-                <Box p={ '4' } className={ 'bg-[--gray-2] rounded-md' }>
+                <Box p={ '2' } className={ 'bg-[--gray-2] rounded-md' }>
                     <Flex justify={ 'center' }>
-                        <Box style={ { background: padding > 0 ? paletteTab == 'solid' ? solidColor : gradientColor : undefined } } p={ padding.toString() } ref={ codeRef } className={ `transition-all ${ !autoWidth && 'w-full' } max-w-full` } dangerouslySetInnerHTML={{ __html: formattedText }} />
+                        <Box style={ { background: padding > 0 ? paletteTab == 'solid' ? solidColor : gradientColor : undefined } } p={ padding.toString() } ref={ codeRef } className={ `transition-all ${ !autoWidth && 'w-full' } max-w-full` }>
+                            <Box dangerouslySetInnerHTML={ { __html: formattedText } } className={ `${ padding > 0 && 'shadow-[0_.5rem_1rem_.25rem_rgba(0,0,0,0.4)]' } rounded-md` }/>
+                        </Box>
                     </Flex>
                 </Box>
             </Flex>

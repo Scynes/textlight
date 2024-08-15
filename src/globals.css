@@ -66,5 +66,4 @@ div:has(> #rbgcp-wrapper) {
 pre.shiki {
     padding-top: 2.5rem;
     padding-left: 0.75rem;
-    box-shadow: 0 .5rem 1rem .25rem rgba(0, 0, 0, 0.4);
 }
