@@ -27,10 +27,10 @@ export default function RootLayout({ children }: Readonly<{children: React.React
             <body className={nunito.variable}>
                 <ThemeProvider attribute="class">
                     <ToastContainer />
-                    <Theme grayColor={ 'slate' }>
+                    <Theme grayColor={ 'slate' } accentColor={ 'iris' }>
                         <NavigationBar />
                         <Container size={ '3' } className={ 'px-4' }>
-                            <Callout.Root color={ 'indigo' } className={ 'mt-4' } variant={ 'surface' }>
+                            <Callout.Root className={ 'mt-4' } variant={ 'surface' }>
                                 <Callout.Icon>
                                     <RxInfoCircled size={ '1rem' }/>
                                 </Callout.Icon>

@@ -11,7 +11,7 @@ export const DarkModeToggle = () => {
     const toggleDarkMode = () => theme.setTheme(theme.theme == 'dark' ? 'light' : 'dark');
 
     return (
-        <Button onClick={ toggleDarkMode } className={ 'cursor-pointer transition-all' } variant={ 'ghost' } color={ 'gray' }>
+        <Button onClick={ toggleDarkMode } className={ 'cursor-pointer transition-all ml-4' } variant={ 'ghost' } color={ 'gray' }>
             { theme.theme == 'dark' ? <RxSun size={ '1.25rem' } /> : <RxMoon size={ '1.25rem' } /> }
         </Button>
     );
