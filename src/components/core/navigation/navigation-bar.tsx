@@ -17,13 +17,13 @@ export const NavigationBar = () => {
                 <Feedback>
                     <FeedbackButton />
                 </Feedback>
-                <RadixLink href={ '' }>
+                <RadixLink href={ 'https://github.com/Scynes/textlight' }>
                     Changelog
                 </RadixLink>
-                <RadixLink href={ '' }>
+                <RadixLink href={ 'https://github.com/Scynes/textlight' }>
                     Docs
                 </RadixLink>
-                <RadixLink href={ '' }>
+                <RadixLink href={ 'https://github.com/Scynes/textlight' }>
                     GitHub
                 </RadixLink>
                 <DarkModeToggle />
