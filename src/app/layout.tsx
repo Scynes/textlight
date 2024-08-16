@@ -30,7 +30,7 @@ export default function RootLayout({ children }: Readonly<{children: React.React
                     <Theme grayColor={ 'slate' }>
                         <NavigationBar />
                         <Container size={ '3' } className={ 'px-4' }>
-                            <Callout.Root color={ 'blue' } className={ 'mt-4' }>
+                            <Callout.Root color={ 'indigo' } className={ 'mt-4' } variant={ 'surface' }>
                                 <Callout.Icon>
                                     <RxInfoCircled size={ '1rem' }/>
                                 </Callout.Icon>

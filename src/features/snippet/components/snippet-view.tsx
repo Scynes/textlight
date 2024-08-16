@@ -70,7 +70,9 @@ export const SnippetView = ( { title, text, formattedText, language }: Propertie
         <Container size={ '3' }>
             <Flex flexGrow={ '1' } direction={ 'column' }>
                 <Flex className={ 'mb-2 flex-col sm:flex-row' } justify={ 'between' }>
-                    <Heading size={ '6' } className={ 'sm:self-end sm:mb-2' }>{ title }</Heading>
+                    <Heading size={ '6' } className={ 'sm:self-end sm:mb-2' }>
+                        { title || 'Untitled' }
+                    </Heading>
                     <Flex gap={ '1' } className={ 'rounded-md bg-[--gray-2] p-2' }>
                         <Popover.Root>
                             <Tooltip content={ 'Background Color' }>
@@ -93,7 +95,7 @@ export const SnippetView = ( { title, text, formattedText, language }: Propertie
                             </Popover.Content>
                         </Popover.Root>
                         <Tooltip content={ 'Font Family' }>
-                            <IconButton variant={ 'soft' } className={ 'transition-all active:scale-95 cursor-pointer' } color={ 'gray' }>
+                            <IconButton variant={ 'soft' } className={ 'transition-all enabled:active:scale-95 cursor-pointer' } color={ 'gray' } disabled>
                                 <RxFontFamily size={ '1.25rem' }/>
                             </IconButton>
                         </Tooltip>
