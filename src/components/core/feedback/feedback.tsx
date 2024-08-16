@@ -38,13 +38,13 @@ export const Feedback = ( { children } : { children: React.ReactNode } ) => {
                             <TextArea value={ value } onChange={ e => setValue(e.target.value) } maxLength={ MAX_LENGTH } name={ 'message' } placeholder={ 'Your feedback...' } className={ 'h-[100px] w-80' }/>
                             <Text color={ 'gray' } size={ '1' } className={ 'absolute bottom-2 right-2' }>{ value.length } / { MAX_LENGTH }</Text>
                         </Box>
-                        { state === 'failed' && 
+                        { state !== null && state !== 'success' &&
                             <Callout.Root size={ '1' } className={ 'mt-4' } color={ 'tomato' }>
                                 <Callout.Icon>
                                     <MdOutlineErrorOutline />
                                 </Callout.Icon>
                                 <Callout.Text>
-                                    Something went wrong, try again.
+                                    { state }
                                 </Callout.Text>
                             </Callout.Root>
                         }
