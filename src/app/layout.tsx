@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { Nunito } from "next/font/google";
-import { Box, Callout, Container, Link, Theme } from '@radix-ui/themes';
+import { Box, Callout, Container, Grid, Link, Theme } from '@radix-ui/themes';
 import { NavigationBar } from '@/components/core/navigation/navigation-bar';
 import { ThemeProvider } from 'next-themes';
 import { RxInfoCircled } from "react-icons/rx";
@@ -28,19 +28,21 @@ export default function RootLayout({ children }: Readonly<{children: React.React
                 <ThemeProvider attribute="class">
                     <ToastContainer />
                     <Theme grayColor={ 'slate' } accentColor={ 'iris' }>
-                        <NavigationBar />
-                        <Container size={ '3' } className={ 'px-4' }>
-                            <Callout.Root className={ 'mt-4' } variant={ 'surface' }>
-                                <Callout.Icon>
-                                    <RxInfoCircled size={ '1rem' }/>
-                                </Callout.Icon>
-                                <Callout.Text>
-                                    This is an early version of Textlight. Please <Link href={ 'https://github.com/Scynes/textlight/issues' }>report any issues</Link> you encounter.
-                                </Callout.Text>
-                            </Callout.Root>
-                        </Container>
-                        <Box className={ 'py-4 px-4' }>
-                            { children }
+                        <Box position={ 'relative' }>
+                            <NavigationBar />
+                            <Box className={ 'py-4 px-4 pt-[68px]' }>
+                                <Container size={ '3' } className={ 'px-4' }>
+                                    <Callout.Root className={ 'mt-4 mb-4' } variant={ 'surface' }>
+                                        <Callout.Icon>
+                                            <RxInfoCircled size={ '1rem' }/>
+                                        </Callout.Icon>
+                                        <Callout.Text>
+                                            This is an early version of Textlight. Please <Link href={ 'https://github.com/Scynes/textlight/issues' }>report any issues</Link> you encounter.
+                                        </Callout.Text>
+                                    </Callout.Root>
+                                </Container>
+                                { children }
+                            </Box>
                         </Box>
                     </Theme>
                 </ThemeProvider>
