@@ -36,7 +36,7 @@ console.log(sum(3, 5)); // Output: 8`
                         </Link>
                     </Button>
                     <Button className={ 'mt-4 flex-1 cursor-pointer' } size={ { initial: '3', sm: '4' } } variant={ 'surface' }>
-                        <Text>What's New?</Text>
+                        <Text>{ `What's New?` }</Text>
                     </Button>
                 </Flex>
             </Flex>
