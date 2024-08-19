@@ -31,11 +31,13 @@ console.log(sum(3, 5)); // Output: 8`
                 <Flex className={ 'gap-4' }>
                     <Button asChild className={ 'mt-4 flex-1 cursor-pointer' } size={ { initial: '3', sm: '4' } } variant={ 'soft' }>
                         <Link href={ '/s' }>
-                            Get Started
+                            <Text>Create</Text>
                             <FaArrowRight />
                         </Link>
                     </Button>
-                    <Button className={ 'mt-4 flex-1 cursor-pointer' } size={ { initial: '3', sm: '4' } } variant={ 'surface' }>What's New?</Button>
+                    <Button className={ 'mt-4 flex-1 cursor-pointer' } size={ { initial: '3', sm: '4' } } variant={ 'surface' }>
+                        <Text>What's New?</Text>
+                    </Button>
                 </Flex>
             </Flex>
             <HeroImage />
