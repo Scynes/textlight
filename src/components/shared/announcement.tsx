@@ -3,8 +3,8 @@ import { RxInfoCircled } from 'react-icons/rx';
 
 export const Announcement = () => {
     return (
-        <Container size={ '3' } className={ 'px-4' }>
-            <Callout.Root className={ 'mt-4 mb-4' } variant={ 'surface' }>
+        <Container size={ '3' }>
+            <Callout.Root variant={ 'surface' }>
                 <Callout.Icon>
                     <RxInfoCircled size={ '1rem' }/>
                 </Callout.Icon>
