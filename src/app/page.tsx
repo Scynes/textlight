@@ -1,10 +1,6 @@
-import { SnippetForm } from '@/features/snippet/components/snippet-form';
+import { Hero } from '@/components/core/hero/hero';
 
 export default function Page () {
 
-    return (
-        <>
-            <SnippetForm />
-        </>
-    )
+    return <Hero />
 }

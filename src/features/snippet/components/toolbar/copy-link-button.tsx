@@ -1,4 +1,4 @@
-'use client'
+'use client';
 
 import { IconButton, Tooltip } from '@radix-ui/themes';
 import { usePathname } from 'next/navigation';
@@ -16,7 +16,7 @@ export const CopyLinkButton = () => {
 
     return (
         <>
-            <Tooltip content={ 'Copy Content' }>
+            <Tooltip content={ 'Share Link' }>
                 <IconButton onClick={ copyContent } variant={ 'soft' } className={ 'transition-all active:scale-95 cursor-pointer' } color={ 'gray' }>
                     <FaLink size={ '1.25rem' }/>
                 </IconButton>
