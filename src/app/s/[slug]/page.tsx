@@ -8,7 +8,7 @@ export default async function Page ( { params }: { params: { slug: string } } ) 
 
     const highlightSnippet = await codeToHtml(data?.text || 'Nothing', {
         lang: data?.language || 'text',
-        theme: 'dracula',
+        theme: 'github-light',
     });
 
     return (

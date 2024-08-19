@@ -66,3 +66,7 @@ pre.shiki {
     padding-top: 2.5rem;
     padding-left: 0.75rem;
 }
+
+.clip { 
+    clip-path: polygon(100% 0, 43% 100%, 100% 100%);
+}

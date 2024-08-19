@@ -8,12 +8,12 @@ import { MdNoteAdd } from "react-icons/md";
 export const NavigationBar = () => {
 
     return (
-        <Flex position={ 'fixed' } className={ 'transition-all border-b border-[--gray-7] px-4 sm:px-8 py-4 w-full bg-[--color-background]' } align={ 'center' } justify={ 'between' }>
+        <Flex className={ 'transition-all border-b border-[--gray-7] px-4 sm:px-8 py-4 w-full bg-[--color-background]' } align={ 'center' } justify={ 'between' }>
             <Flex align={ 'center' } gap={ '1' }>
                 <IoCodeSlashSharp size={ '1.5rem' } />
-                <Heading size={ '6' }>Textlight</Heading>
+                <Heading size={ '6' } weight={ 'light' }>Textlight</Heading>
             </Flex>
-            <Flex gap={ '4' } align={ 'center' }>
+            <Flex gap={ '4' } align={ 'center' } className={ 'hidden sm:flex' }>
                 <Button variant={ 'soft' } className={ 'transition-all cursor-pointer' }>
                     <MdNoteAdd size={ '1.5rem' } />
                     <Text>Create</Text>
