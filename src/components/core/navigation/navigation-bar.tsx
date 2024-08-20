@@ -42,14 +42,20 @@ export const NavigationBar = () => {
                     </Feedback>
                     <DarkModeToggle />
                 </Flex>
-                <Flex className={ 'sm:hidden' } align={ 'center' }>
-                    <Button onClick={ () => setExpanded(!expanded) } variant={ 'outline' }>
+                <Flex className={ 'sm:hidden' } align={ 'center' } gap={ '4' }>
+                    <Button asChild variant={ 'soft' } className={ 'transition-all cursor-pointer' }>
+                        <Link href={ '/s' }>
+                            <MdNoteAdd size={ '1.5rem' } />
+                            <Text>Create</Text>
+                        </Link>
+                    </Button>
+                    <Button onClick={ () => setExpanded(!expanded) } variant={ 'outline' } className={ 'cursor-pointer' }>
                         { !expanded ? <RxHamburgerMenu size={ '1.5rem' } /> : <RxCross1 size={ '1.5rem' } /> }
                     </Button>
                 </Flex>
             </Flex>
-            <Box className={ `${ expanded ? 'block' : 'hidden' } sm:hidden absolute h-dvh w-full bg-[--color-background] pt-[68px] z-20 px-2` }>
-                <Flex direction={ 'column' } className={ 'pt-2 flex-1' }>
+            <Box className={ `${ expanded ? 'block' : 'hidden' } sm:hidden absolute h-dvh w-full bg-[--color-background] pt-[68px] z-30 px-2` }>
+                <Flex direction={ 'column' } className={ 'pt-2 flex-1 h-full' }>
                     <Flex direction={ 'column' } gap={ '4' } className={ 'px-4' }>
                         <Button size={ '3' } variant={ 'soft' }>Sign Up</Button>
                         <Button size={ '3' } variant={ 'outline' }>Log In</Button>
@@ -65,6 +71,9 @@ export const NavigationBar = () => {
                             GitHub
                         </Link>
                     </Flex>
+                    <Box className={ 'mt-auto place-self-center pb-8' }>
+                        <DarkModeToggle />
+                    </Box>
                 </Flex>
             </Box>
         </>

@@ -26,7 +26,7 @@ export default function RootLayout({ children }: Readonly<{children: React.React
     return (
         <html lang="en" suppressHydrationWarning>
             <body className={nunito.variable}>
-                <ThemeProvider attribute="class">
+                <ThemeProvider attribute="class" defaultTheme={ 'dark' }>
                     <ToastContainer />
                     <Theme grayColor={ 'slate' } accentColor={ 'iris' }>
                         <Grid rows={ 'auto 1fr' } className={ 'h-dvh' }>
