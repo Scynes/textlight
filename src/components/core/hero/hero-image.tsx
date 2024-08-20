@@ -8,8 +8,8 @@ export const HeroImage = () => {
     
     const theme = useTheme();
 
-    const [mounted, setMounted] = useState(false)
-    
+    const [ mounted, setMounted ] = useState(false)
+
     useEffect(() => {
         setMounted(true)
     }, [])
