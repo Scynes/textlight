@@ -2,6 +2,8 @@
 
 Textlight is a Pastebin-type application that combines the features found in carbon.now.sh to generate beautiful images of code snippets for sharing on various platforms. While still in development, Textlight is available for early testing, and contributions are greatly encouraged.
 
+[![Textlight](./public/showcase.png)](https://textlight.vercel.app)
+
 ## Technologies Used
 
 ![TypeScript](https://img.shields.io/badge/TypeScript-007ACC?style=flat&logo=typescript&logoColor=white)
