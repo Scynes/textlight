@@ -1,15 +1,13 @@
 import type { Metadata } from "next";
 import { Nunito } from "next/font/google";
-import { Box, Callout, Container, Grid, Link, Text, Theme } from '@radix-ui/themes';
+import { Box, Grid, Theme } from '@radix-ui/themes';
 import { NavigationBar } from '@/components/core/navigation/navigation-bar';
 import { ThemeProvider } from 'next-themes';
-import { RxInfoCircled } from "react-icons/rx";
 import { ToastContainer } from 'react-toastify';
 
 import '@radix-ui/themes/styles.css';
 import "@/globals.css";
 import 'react-toastify/dist/ReactToastify.css';
-import { Announcement } from '@/components/shared/announcement';
 
 const nunito = Nunito({ 
     subsets: ["latin"],

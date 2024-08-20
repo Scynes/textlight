@@ -37,9 +37,11 @@ export const NavigationBar = () => {
                     <RadixLink href={ 'https://github.com/Scynes/textlight' }>
                         GitHub
                     </RadixLink>
-                    <Feedback>
-                        <FeedbackButton />
-                    </Feedback>
+                    <FeedbackButton>
+                        <Feedback>
+                            <Text className={ 'h-full w-full px-3 flex items-center' }>Feedback</Text>
+                        </Feedback>
+                    </FeedbackButton>
                     <DarkModeToggle />
                 </Flex>
                 <Flex className={ 'sm:hidden' } align={ 'center' } gap={ '4' }>
