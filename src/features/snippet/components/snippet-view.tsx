@@ -67,10 +67,10 @@ export const SnippetView = ( { title, text, formattedText, language }: Propertie
     const setPaletteTab = (tab: 'solid' | 'gradient' | 'image') => setSnippetStyles(prev => ({ ...prev, paletteTab: tab }));
 
     return (
-        <Container size={ '3' }>
+        <Container size={ '3' } className={ 'mt-4' }>
             <Flex flexGrow={ '1' } direction={ 'column' }>
                 <Flex className={ 'mb-2 flex-col sm:flex-row' } justify={ 'between' }>
-                    <Heading size={ '6' } className={ 'sm:self-end sm:mb-2' }>
+                    <Heading size={ '6' } className={ 'sm:self-end mb-2 sm:mb-0' }>
                         { title || 'Untitled' }
                     </Heading>
                     <Flex gap={ '1' } className={ 'rounded-md bg-[--gray-2] p-2' }>
