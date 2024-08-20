@@ -6,7 +6,7 @@ import { Snippet } from '../types/snippet';
 
 import ShortUniqueId from 'short-unique-id';
 
-export const submitSnippet = async (formData: FormData) => {
+export const submitSnippet = async (initialState: any, formData: FormData): Promise< { success: boolean, link: string } > => {
     
     const { randomUUID } = new ShortUniqueId({ length: 7 });
 
@@ -16,5 +16,7 @@ export const submitSnippet = async (formData: FormData) => {
 
     if (error) console.log(error);
 
-    else redirect(`/s/${ data.link_id }`);
+    //else redirect(`/s/${ data.link_id }`);
+
+    return { success: true, link: data?.link_id || 'error' };
 }
