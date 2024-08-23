@@ -1,12 +1,11 @@
 'use server';
 
 import { createClient } from '@/utils/supabase/server';
-import { redirect } from 'next/navigation';
 import { Snippet } from '../types/snippet';
 
 import ShortUniqueId from 'short-unique-id';
 
-export const submitSnippet = async (initialState: any, formData: FormData): Promise< { success: boolean, link: string, error?: string } > => {
+export const submitSnippet = async (initialState: any, formData: FormData): Promise< { success: boolean, link: string | null, error?: string } > => {
     
     const { randomUUID } = new ShortUniqueId({ length: 7 });
 
@@ -24,7 +23,7 @@ export const submitSnippet = async (initialState: any, formData: FormData): Prom
     // Calculate the size of the text in bytes
     const textSizeBytes = new Blob([ text ]).size;
 
-    if (textSizeBytes > MAX_TEXT_SIZE_BYTES) return { success: false, link: 'Snippet exceeds 1MB limit.', error: 'Snippet exceeds 1MB limit.' };
+    if (textSizeBytes > MAX_TEXT_SIZE_BYTES) return { success: false, link: null, error: 'Snippet exceeds 1MB limit.' };
 
     const SUPABASE = createClient();
 

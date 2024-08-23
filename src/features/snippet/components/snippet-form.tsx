@@ -10,7 +10,7 @@ import { GiCheckMark } from 'react-icons/gi';
 import { FaRegCopy } from "react-icons/fa";
 import { IoEnterOutline } from "react-icons/io5";
 import Link from 'next/link';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { toast } from 'react-toastify';
 
 export const SnippetForm = () => {
@@ -23,6 +23,16 @@ export const SnippetForm = () => {
         navigator.clipboard.writeText(`https://textlight.vercel.app/s/${ state?.link }`);
         toast.success('Link copied to clipboard!', { position: 'bottom-right', theme: 'dark' });
     }
+
+    useEffect(() => {
+
+        if (state?.success) return;
+
+        if (state?.error) {
+            toast.error(state.error, { position: 'bottom-right', theme: 'dark' });
+        }
+
+    }, [ state ]);
 
     return (
         <Box className={ 'w-full' }>
