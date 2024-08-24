@@ -1,7 +1,5 @@
 'use client';
 
-import * as htmlToImage from 'html-to-image';
-
 import { Box,Text, Container, Flex, Heading, IconButton, Slider, Tooltip, Popover, SegmentedControl } from '@radix-ui/themes';
 import { IoColorPaletteOutline } from "react-icons/io5";
 
@@ -12,6 +10,7 @@ import { CirclePicker } from 'react-color';
 import GradientPicker, { useColorPicker } from 'react-best-gradient-color-picker';
 import { CopyContentButton } from '@/features/snippet/components/toolbar/copy-content-button';
 import { CopyLinkButton } from './toolbar/copy-link-button';
+import html2canvas from 'html2canvas-pro';
 
 interface Properties {
     // The title of the snippet
@@ -26,7 +25,7 @@ interface Properties {
 
 export const SnippetView = ( { title, text, formattedText, language }: Properties ) => {
 
-    const codeRef = useRef(null);
+    const codeRef = useRef<HTMLDivElement>(null);
 
     const [snippetStyles, setSnippetStyles] = useState({
         autoWidth: false,
@@ -43,15 +42,17 @@ export const SnippetView = ( { title, text, formattedText, language }: Propertie
     }, []);
 
     const exportImage = async () => {
-
         if (!codeRef.current) return;
 
-        const result = await htmlToImage.toPng(codeRef.current, { cacheBust: false });
+        codeRef.current.style.width = codeRef.current.style.width; 
+        // Use html2canvas to capture the content
+        const canvas = await html2canvas(codeRef.current, { useCORS: true });
+        const dataURL = canvas.toDataURL('image/png');
 
-        const link = document.createElement("a");
-
-        link.download = `${ title }.png`;
-        link.href = result;
+        // Create a link element and trigger download
+        const link = document.createElement('a');
+        link.href = dataURL;
+        link.download = `${title}.png`;
         link.click();
     }
 
@@ -129,8 +130,8 @@ export const SnippetView = ( { title, text, formattedText, language }: Propertie
                     </Flex>
                 </Flex>
                 <Box p={ '2' } className={ 'bg-[--gray-2] rounded-md' }>
-                    <Flex justify={ 'center' }>
-                        <Box style={ { background: snippetStyles.padding > 0 ? snippetStyles.paletteTab == 'solid' ? snippetStyles.solidColor : snippetStyles.gradientColor : undefined } } p={ snippetStyles.padding.toString() } ref={ codeRef } className={ `transition-all ${ !snippetStyles.autoWidth && 'w-full' } max-w-full` }>
+                    <Flex justify={ 'center' } className='w-full'>
+                        <Box style={ { background: snippetStyles.padding > 0 ? snippetStyles.paletteTab == 'solid' ? snippetStyles.solidColor : snippetStyles.gradientColor : undefined } } p={ snippetStyles.padding.toString() } ref={ codeRef } className={ `transition-all w-fit ${ !snippetStyles.autoWidth && '!w-full' } max-w-4xl` }>
                             <Box dangerouslySetInnerHTML={ { __html: formattedText } } className={ `${ snippetStyles.padding > 0 && 'shadow-[0_.5rem_1rem_.25rem_rgba(0,0,0,0.4)]' } rounded-md` }/>
                         </Box>
                     </Flex>
