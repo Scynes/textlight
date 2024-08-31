@@ -6,12 +6,7 @@ import Link from 'next/link';
 
 export const Hero = async () => {
 
-    const exampleCode = `const sum = (a, b) => {
-  return a + b;
-}
-
-// Example usage:
-console.log(sum(3, 5)); // Output: 8`
+    const exampleCode = `const sum = (a, b) => {\n  return a + b;\n}\n\n// Example usage:\nconsole.log(sum(3, 5)); // Output: 8`;
 
     const highlightSnippet = await codeToHtml(exampleCode, {
         lang: 'jsx',
@@ -19,7 +14,7 @@ console.log(sum(3, 5)); // Output: 8`
     });
 
     return (
-        <Flex className={ 'min-h-full relative items-center overflow-hidden' } gap={ '6' }>
+        <Flex className={ 'min-h-full relative items-center overflow-hidden max-w-[1600px] mx-auto' } gap={ '6' }>
             <Box position={ 'absolute' } className={ 'lg:hidden z-10 w-full h-dvh bg-opacity-15 backdrop-blur-sm' } />
             <Flex direction={ 'column' } className={ 'w-full px-6 sm:px-24 max-w-[47rem] z-20 justify-center relative' }>
                 <Heading size={ { initial: '8', sm: '9' } } weight={ 'medium' }>Start sharing</Heading>

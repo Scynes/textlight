@@ -1,28 +1,32 @@
 'use client';
 
-import { Flex, Text } from '@radix-ui/themes'
+import { Flex, Select, Switch, Text } from '@radix-ui/themes'
 import { useState } from 'react';
-import { IoSettingsSharp, IoChevronUp, IoChevronDown } from 'react-icons/io5';
 
 export const SnippetSettings = () => {
 
-    const [ settingsOpen, setSettingsOpen ] = useState(false);
+    const [ expiration, setExpiration ] = useState<string>( '0' );
+
+    const [ burnAfterReading, setBurnAfterReading ] = useState<boolean>( false );
     
     return (
-        <Flex direction={ 'column' } className={ 'rounded-md flex-1 border border-[--gray-7]' }>
-            <Flex onClick={ () => setSettingsOpen(!settingsOpen) } className={ `transition-all w-full h-[37px] cursor-pointer px-4 select-none hover:text-[--gray-10]` } align={ 'center' } justify={ 'between' }>
-                <Flex align={ 'center' } gap={ '3' }>
-                    <IoSettingsSharp />
-                    <Text>Additional Options</Text>
-                </Flex>
-                <Flex>
-                    { settingsOpen ? <IoChevronUp /> : <IoChevronDown /> }
-                </Flex>
+        <Flex direction={ 'column' } className={ 'flex-1 gap-3 sm:w-72 sm:flex-initial' }>
+            <Flex align={ 'center' } justify={ 'between' }>
+                <Select.Root name={ 'expiration' } onValueChange={ setExpiration } value={ expiration } defaultValue={ expiration } size={ '3' }>
+                    <Select.Trigger className={ 'flex-1' } variant={ 'surface' } />
+                    <Select.Content position={ 'popper' }>
+                        <Select.Item value={ '0' }>Expires: Never</Select.Item>
+                        <Select.Item value={ '1' }>Expires: 1 Days</Select.Item>
+                        <Select.Item value={ '5' }>Expires: 5 Days</Select.Item>
+                        <Select.Item value={ '30' }>Expires: 30 Days</Select.Item>
+                    </Select.Content>
+                </Select.Root>
             </Flex>
-            <Flex className={ `transition-all ${ settingsOpen ? 'h-40 py-2 border-[--gray-7]' : 'border-transparent h-0' } flex-col border-t overflow-hidden px-4` }>
-                <Text>Settings</Text>
-                <Text>Settings</Text>
-                <Text>Settings</Text>
+            <Flex className={ 'border rounded-md border-[--gray-7] px-4 py-2 flex-1' }>
+                <Flex align={ 'center' } justify={ 'between' } className={ 'flex-1' }>
+                    <Text>Burn After Reading</Text>
+                    <Switch name={ 'burn' } value={ `${ burnAfterReading }` } checked={ burnAfterReading } onClick={ () => setBurnAfterReading(!burnAfterReading) }/>
+                </Flex>
             </Flex>
         </Flex>
     )
