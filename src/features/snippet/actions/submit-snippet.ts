@@ -18,6 +18,10 @@ export const submitSnippet = async (initialState: any, formData: FormData): Prom
     // Get the text from the form data
     const text = formData.get('text')?.toString() || '';
 
+    const expiration = formData.get('expiration') as String;
+
+    const burnAfterReading = formData.get('burn') as String == 'true';
+
     if (text.length === 0) return { success: false, link: 'error' };
 
     // Calculate the size of the text in bytes
@@ -27,7 +31,14 @@ export const submitSnippet = async (initialState: any, formData: FormData): Prom
 
     const SUPABASE = createClient();
 
-    const { data, error } = await SUPABASE.from('snippet').insert({ title: formData.get('title'), text: formData.get('text'), link_id: randomUUID(), language: formData.get('language') }).select().single<Snippet>();
+    const { data, error } = await SUPABASE.from('snippet').insert({ 
+        title: formData.get('title'), 
+        text: formData.get('text'), 
+        link_id: randomUUID(), 
+        language: formData.get('language') ,
+        burn: burnAfterReading,
+        expiration: expiration,
+    }).select().single<Snippet>();
 
     if (error) console.log(error);
 

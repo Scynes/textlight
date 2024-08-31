@@ -7,4 +7,10 @@ export interface Snippet {
     text: string;
 
     language: string;
+
+    burn: boolean;
+
+    expiration: string;
+
+    created_at: string;
 }

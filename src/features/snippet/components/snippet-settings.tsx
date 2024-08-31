@@ -1,6 +1,6 @@
 'use client';
 
-import { Flex, Select, Switch, Text } from '@radix-ui/themes'
+import { Checkbox, Flex, Select, Switch, Text } from '@radix-ui/themes'
 import { useState } from 'react';
 
 export const SnippetSettings = () => {
@@ -25,7 +25,8 @@ export const SnippetSettings = () => {
             <Flex className={ 'border rounded-md border-[--gray-7] px-4 py-2 flex-1' }>
                 <Flex align={ 'center' } justify={ 'between' } className={ 'flex-1' }>
                     <Text>Burn After Reading</Text>
-                    <Switch name={ 'burn' } value={ `${ burnAfterReading }` } checked={ burnAfterReading } onClick={ () => setBurnAfterReading(!burnAfterReading) }/>
+                    <Checkbox name={ 'burn' } value={ `${ burnAfterReading }` } checked={ burnAfterReading } hidden/>
+                    <Switch checked={ burnAfterReading } onClick={ () => setBurnAfterReading(!burnAfterReading) }/>
                 </Flex>
             </Flex>
         </Flex>
