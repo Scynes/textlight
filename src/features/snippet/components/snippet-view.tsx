@@ -1,6 +1,6 @@
 'use client';
 
-import { Box,Text, Container, Flex, Heading, IconButton, Slider, Tooltip, Popover, SegmentedControl } from '@radix-ui/themes';
+import { Box,Text, Container, Flex, Heading, IconButton, Slider, Tooltip, Popover, SegmentedControl, DataList } from '@radix-ui/themes';
 import { IoColorPaletteOutline } from "react-icons/io5";
 
 import { TbBoxMargin } from "react-icons/tb";
@@ -11,6 +11,7 @@ import GradientPicker, { useColorPicker } from 'react-best-gradient-color-picker
 import { CopyContentButton } from '@/features/snippet/components/toolbar/copy-content-button';
 import { CopyLinkButton } from './toolbar/copy-link-button';
 import html2canvas from 'html2canvas-pro';
+import { formatDateToReadable } from '@/utils/date';
 
 interface Properties {
     // The title of the snippet
@@ -21,9 +22,11 @@ interface Properties {
     formattedText: string;
     // The (text) language of the snippet
     language: string;
+    // The date the snippet was created
+    date: string;
 }
 
-export const SnippetView = ( { title, text, formattedText, language }: Properties ) => {
+export const SnippetView = ( { title, text, formattedText, language, date }: Properties ) => {
 
     const codeRef = useRef<HTMLDivElement>(null);
 
@@ -136,6 +139,12 @@ export const SnippetView = ( { title, text, formattedText, language }: Propertie
                         </Box>
                     </Flex>
                 </Box>
+                <DataList.Root className={ 'mt-2' }>
+                    <DataList.Item align={ 'center' }>
+                        <DataList.Label>Date Created:</DataList.Label>
+                        <DataList.Value>{ formatDateToReadable(date) }</DataList.Value>
+                    </DataList.Item>
+                </DataList.Root>
             </Flex>
         </Container>
     )
