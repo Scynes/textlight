@@ -10,7 +10,7 @@ export default async function Page ( { params }: { params: { slug: string } } ) 
 
     const highlightSnippet = await codeToHtml(data?.text || 'Nothing', {
         lang: data?.language || 'text',
-        theme: 'dracula',
+        theme: 'synthwave-84',
     });
 
     return (
