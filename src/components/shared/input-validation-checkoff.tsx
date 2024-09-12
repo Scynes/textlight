@@ -11,7 +11,7 @@ interface Properties {
     message: string
 }
 
-export default ( { message, valid }: Properties ) => {
+export const InputValidationCheckoff = ( { message, valid }: Properties ) => {
     return (
         <Flex gap={ '1' } align={ 'center' }>
             <FaCheck size={ 10 } className={ `${ valid ? 'text-[--accent-10]' : 'text-[--gray-8]' }` } />
