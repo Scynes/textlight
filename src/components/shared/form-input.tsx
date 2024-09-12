@@ -26,7 +26,7 @@ interface Properties {
     icon?: ReactNode;
 }
 
-export default ( { name, type, placeholder, required, size, icon }: Properties ) => {
+export const FormInput = ( { name, type, placeholder, required, size, icon }: Properties ) => {
 
     return (
         <Form.Field name={ name }>

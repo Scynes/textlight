@@ -8,7 +8,7 @@ interface Properties {
     children: React.ReactNode;
 }
 
-export default ( { children }: Properties ) => {
+export const SubmitFormButton = ( { children }: Properties ) => {
 
     const { pending } = useFormStatus()
 
